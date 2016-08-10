@@ -21,9 +21,9 @@ setwd("I:/Data/Useful Programs/Statistical TMF Index")
 # The path to the folder to be indexed.
 path <- "I:/Data/Useful Programs/Statistical TMF Index"
 # The path to logos to add at the top of each page. Multi logos possible.
-pageLogo <- c("I:/Data/OCTRU_SOPs/CSMLogo - Copy.png")
+pageLogo <- c("I:/Data/OCTRU_SOPs/CSMLogo.png")
 # The path to logos to add on the title page. Multi logos possible.
-titleLogo <- c("I:/Data/OCTRU_SOPs/CSMLogo - Copy.png")
+titleLogo <- c("I:/Data/OCTRU_SOPs/CSMLogo.png")
 # The author of the document.
 author <- "Eleni Franou"
 # The document title.
