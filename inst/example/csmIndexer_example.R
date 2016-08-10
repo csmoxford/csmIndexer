@@ -3,7 +3,8 @@
 # install dependencies
 install.packages(c("xtable","stringr"))
 # install package containing the indexer.
-devtools::install_github()
+devtools::install_github("csmoxford/csmIndexer")
+library(csmIndexer)
 
 setwd("I:/Data/Peter_Dutton/Shared_code/R/indexer")
 

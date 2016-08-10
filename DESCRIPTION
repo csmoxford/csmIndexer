@@ -1,11 +1,10 @@
-Package: cmsIndexer
+Package: csmIndexer
 Type: Package
 Title: CSM file indexer
 Version: 0.1
 Date: 2016-08-10
 Author: Peter Dutton, Eleni Frangou
 Maintainer: Peter Dutton <peter.dutton@ndorms.ox.ac.uk>
-Description: This package contains a small indexer which produces a pdf of the
-    contents of a folder.
+Description: This package contains a small indexer which produces a pdf of the contents of a folder.
 License: None
 RoxygenNote: 5.0.1

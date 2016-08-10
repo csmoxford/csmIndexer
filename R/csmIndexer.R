@@ -11,7 +11,7 @@
 #' @export csmIndexer
 csmIndexer = function(){
 
-  rnwfile <- system.file("Sweave", "csmIndexer_v1.0.Rnw", package = "utils")
+  rnwfile <- system.file("indexer","csmIndexer_v1.0.Rnw", package = "csmIndexer", mustWork = TRUE)
   Sweave(rnwfile)
   tools::texi2pdf("csmIndexer_v1.0.Rnw", clean = TRUE, quiet = TRUE)
 }
