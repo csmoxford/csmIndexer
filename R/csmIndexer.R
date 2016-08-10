@@ -12,6 +12,8 @@
 #' @param personnel The key personnel working on the documents contained in the folder. You may wish to include start and end dates here if appropriate.
 #'
 #' @details
+#' Prerequesites: You must have installed miktex and it must be available on the PATH.
+#'
 #' Please set the working directory explicitely using setwd() to ensure you know where the file is being created.
 #'
 #' Note that the R programming language uses bachslash \ to create special characters. The simplest way to write paths is to replace them with forwardslash /.
@@ -39,5 +41,6 @@ csmIndexer = function(){
   file.remove(paste0(wd,"/",file,".aux"))
   file.remove(paste0(wd,"/",file,".log"))
   file.remove(paste0(wd,"/",file,"-concordance.tex"))
-  file.remove(paste0(wd,"/",file,".tex"))
+ # file.remove(paste0(wd,"/",file,".tex"))
+  return()
 }

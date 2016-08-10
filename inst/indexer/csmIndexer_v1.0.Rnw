@@ -39,16 +39,15 @@
 
 \newcolumntype{U}[1]{>{\arraybackslash}p{#1}}
 
-%%% CHANGE %%%
-%%% Add the path to the logos (only 2 at the moment) to include in the right and left header %%%%
-%%% Replace ... in the following lines e.g. I://Data//Eleni//Admin//CSM//octru_logo.jpg - NOTE THE DOUBLE FORWARD SLASHES %%%
-%%% If you only need one logo then add a % at the beginning of the following line so that LaTeX omits the command %%%
-%\lhead{\includegraphics[width=2cm]{ ... }}
-
 \rhead{
 <<echo=FALSE,results=tex>>=
-for(i in 1:length(pageLogo)){
-  cat(paste0("\\includegraphics[width=2cm]{",pageLogo[i],"}"))
+if(length(pageLogo)> 0){
+  for(i in 1:length(pageLogo)){
+    logo = strsplit(pageLogo[i],"[.]")[[1]]
+    end = paste0(".",logo[length(logo)])
+    logo = paste0(logo[1:(length(logo)-1)],collapse = ".")
+    cat(paste0("\\includegraphics[width=2cm]{",paste0('{"',logo,'"}',end),"}\n\\hspace {0.5cm}"))
+  }
 }
 @
 }
@@ -70,11 +69,16 @@ cat("\\title{\\textbf{",title,"}}")
 \hspace {2cm}
 \center
 <<echo=FALSE,results=tex>>=
-for(i in 1:length(titleLogo)){
-cat(paste0("\\includegraphics[width=5cm]{",titleLogo[i],"}\n"))
+if(length(titleLogo)> 0){
+  for(i in 1:length(titleLogo)){
+    logo = strsplit(titleLogo[i],"[.]")[[1]]
+    end = paste0(".",logo[length(logo)])
+    logo = paste0(logo[1:(length(logo)-1)],collapse = ".")
+    cat(paste0("\\includegraphics[width=5cm]{",paste0('{"',logo,'"}',end),"}\n\\hspace {2cm}"))
+  }
 }
 @
-\hspace {2cm}}
+}
 %%% CHANGE %%%
 %%% Replace the ... below with the author of the TMF Index %%%
 \author{

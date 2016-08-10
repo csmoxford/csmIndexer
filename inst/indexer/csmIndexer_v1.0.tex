@@ -1,0 +1,48 @@
+\documentclass[10pt,a4paper,landscape]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage[top=2cm, bottom=2cm, left=0.5cm, right=0.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{times}
+\usepackage{float}
+\usepackage{changepage}
+\usepackage{graphics}
+\usepackage[pdftex]{graphicx}
+\usepackage{setspace}
+\usepackage[numbers]{natbib}
+\usepackage{longtable}
+\usepackage{tabu}
+\usepackage{lscape}
+\setlength{\headheight}{26pt}
+\doublespacing
+\linespread{1.6}
+\pagenumbering{arabic}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{xcolor}
+\usepackage{lipsum}
+\usepackage{titlepic}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{collcell}
+
+\usepackage[obeyspaces]{url}% http://ctan.org/pkg/url
+\makeatletter
+\def\UrlBreaks{\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]%
+ \do\(\do\)\do\,\do\?\do\-\do\'\do+\do\=\do\#}%
+\def\UrlBigBreaks{\do\:\do@url@hyp}%
+\def\UrlNoBreaks{\do\[\do\{\do\<}%
+\makeatother
+\urlstyle{rm}
+
+\newcolumntype{U}[1]{>{\arraybackslash}p{#1}}
+
+%%% CHANGE %%%
+%%% Add the path to the logos (only 2 at the moment) to include in the right and left header %%%%
+%%% Replace ... in the following lines e.g. I://Data//Eleni//Admin//CSM//octru_logo.jpg - NOTE THE DOUBLE FORWARD SLASHES %%%
+%%% If you only need one logo then add a % at the beginning of the following line so that LaTeX omits the command %%%
+%\lhead{\includegraphics[width=2cm]{ ... }}
+
+\rhead{
