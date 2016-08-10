@@ -4,6 +4,7 @@
 #################################################################
 
 # install package containing the indexer.
+install.packages("devtools")
 devtools::install_github("csmoxford/csmIndexer")
 
 # Load the library containing the functions
