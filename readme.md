@@ -7,8 +7,8 @@ This package contains a small indexer which produces a pdf of the contents of a 
 Requirements:
 
 * An installation of [R](https://cran.r-project.org/bin/windows/base/)
-* An installation of [RStudio](https://www.rstudio.com/home/) (Recommended
-* An installation of [Miktex](http://miktex.org/download)
+* An installation of [RStudio](https://www.rstudio.com/home/) (Recommended)
+* An installation of [Miktex](http://miktex.org/download) to compile the .tex file.
 
 In R run the following:
 
