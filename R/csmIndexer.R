@@ -41,6 +41,6 @@ csmIndexer = function(){
   file.remove(paste0(wd,"/",file,".aux"))
   file.remove(paste0(wd,"/",file,".log"))
   file.remove(paste0(wd,"/",file,"-concordance.tex"))
- # file.remove(paste0(wd,"/",file,".tex"))
+  file.remove(paste0(wd,"/",file,".tex"))
   return()
 }
