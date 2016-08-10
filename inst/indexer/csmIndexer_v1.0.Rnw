@@ -1,0 +1,208 @@
+\documentclass[10pt,a4paper,landscape]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage[top=2cm, bottom=2cm, left=0.5cm, right=0.5cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{times}
+\usepackage{float}
+\usepackage{changepage}
+\usepackage{graphics}
+\usepackage[pdftex]{graphicx}
+\usepackage{setspace}
+\usepackage[numbers]{natbib}
+\usepackage{longtable}
+\usepackage{tabu}
+\usepackage{lscape}
+\setlength{\headheight}{26pt}
+\doublespacing
+\linespread{1.6}
+\pagenumbering{arabic}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{xcolor}
+\usepackage{lipsum}
+\usepackage{titlepic}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{collcell}
+
+\usepackage[obeyspaces]{url}% http://ctan.org/pkg/url
+\makeatletter
+\def\UrlBreaks{\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]%
+ \do\(\do\)\do\,\do\?\do\-\do\'\do+\do\=\do\#}%
+\def\UrlBigBreaks{\do\:\do@url@hyp}%
+\def\UrlNoBreaks{\do\[\do\{\do\<}%
+\makeatother
+\urlstyle{rm}
+
+\newcolumntype{U}[1]{>{\arraybackslash}p{#1}}
+
+%%% CHANGE %%%
+%%% Add the path to the logos (only 2 at the moment) to include in the right and left header %%%%
+%%% Replace ... in the following lines e.g. I://Data//Eleni//Admin//CSM//octru_logo.jpg - NOTE THE DOUBLE FORWARD SLASHES %%%
+%%% If you only need one logo then add a % at the beginning of the following line so that LaTeX omits the command %%%
+%\lhead{\includegraphics[width=2cm]{ ... }}
+
+\rhead{
+<<echo=FALSE,results=tex>>=
+for(i in 1:length(pageLogo)){
+  cat(paste0("\\includegraphics[width=2cm]{",pageLogo[i],"}"))
+}
+@
+}
+
+
+%%% CHANGE %%%%
+%%% Trial Acronym - Replace ... in the following line %%%
+<<echo=FALSE,results=tex>>=
+cat("\\title{\\textbf{",title,"}}")
+@
+
+
+\titlepic{
+%%% CHANGE %%%
+%%% Add the path to the logos, can add more than 2 - just copy and paste the next line and change the path %%%
+%%% If you only need one logo then add a % at the beginning of the following line so that LaTeX omits the command %%%
+%\includegraphics[width=5cm]{  }
+%%% If you only need one logo (and you want it to be in the center of the page) add a % at the beginning of the following line %%%
+\hspace {2cm}
+\center
+<<echo=FALSE,results=tex>>=
+for(i in 1:length(titleLogo)){
+cat(paste0("\\includegraphics[width=5cm]{",titleLogo[i],"}\n"))
+}
+@
+\hspace {2cm}}
+%%% CHANGE %%%
+%%% Replace the ... below with the author of the TMF Index %%%
+\author{
+<<echo=FALSE,results=tex>>=
+cat(author)
+@
+}
+\date{\today}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\SweaveOpts{echo=FALSE}
+
+\maketitle
+
+<<echo=FALSE,results=tex>>=
+cat(paste0("Folders are stored at this location:", path ))
+@
+
+\textbf{List key personnel involved in trial (with start and end dates if applicable):}
+\begin{itemize}
+
+<<echo=FALSE,results=tex>>=
+for(i in 1:length(personnel)){
+  cat(paste0("\\item ", personnel[i], "\n"))
+}
+@
+\end{itemize}
+<<echo=FALSE,results=tex>>=
+library(xtable)
+library(stringr)
+### CHANGE ###
+### Put the TMF path below (by replacing the ...) in quotes for example "R:\\MISC\\ELAD" using two backslashes to separate the directories in the path
+TMF_path <- path
+trial_dirs <- list.dirs(TMF_path, full.names = TRUE, recursive = FALSE)
+
+###################################################################################
+####################### DO NOT CHANGE FROM HERE ON ################################
+
+# FUNCTIONS #
+#############
+onelevel_sub_directory_function<-function(path,trial_dirs,i) {
+  list_overall_matrix<-c("","","")
+  list_files<-list.files(path, full.names =FALSE, recursive = TRUE,all.files = FALSE)
+  list_matrix<-matrix("",nr=(length(list_files)+1),nc=3)
+  list_matrix[1,1]<-(list.dirs(TMF_path, full.names = FALSE, recursive = FALSE))[i]
+  list_matrix[2:(length(list_files)+1),3]<-list_files
+  return(list_matrix)
+}
+
+multilevel_sub_directory_function<-function(path){
+  path_less<-gsub(".*/","",path)
+  list_overall_matrix<-c(path_less,"","")
+  list_subdir<-list.dirs(path,full.names = TRUE, recursive = TRUE)
+  list_subdir_appear<-list.dirs(path,full.names = FALSE, recursive = TRUE)
+  for (i in 1:length(list_subdir)) {
+    list_subdir_files<-list.files(list_subdir[i],full.names =FALSE, recursive = FALSE,include.dirs=FALSE)
+     if (length(list_subdir_files)==0) {
+      list_subdir_files_final<-""
+      list_subdir_final<-list_subdir_appear[i]
+      } else {
+      list_subdir_dirs<-list.dirs(list_subdir[i],full.names=FALSE)
+      match_dirs<-match(list_subdir_files,list_subdir_dirs,nomatch=0)
+      if (sum(match_dirs)==0) {list_subdir_files_final<-list_subdir_files} else {
+      list_subdir_files_final<-list_subdir_files[-which(match_dirs!=0)]
+      if (length(list_subdir_files_final)==0) {list_subdir_files_final<-""}}
+      list_subdir_final<-list_subdir_appear[i]
+    }
+    list_matrix<-matrix("",nr=(length(list_subdir_files_final)),nc=3)
+    list_matrix[1:(length(list_subdir_files_final)),2]<-list_subdir_final
+    list_matrix[1:(length(list_subdir_files_final)),3]<-list_subdir_files_final
+    list_overall_matrix<-rbind(list_overall_matrix,list_matrix)
+    }
+  return(list_overall_matrix)
+}
+
+function_empty<-function(x){
+ sum(x==c("","",""))==3
+}
+
+# RUN #
+#######
+list_total_matrix <- matrix("",0,3)
+for (kk in 1:length(trial_dirs)) {
+  list_subdir <- list.dirs(trial_dirs[kk],full.names = FALSE, recursive = FALSE)
+  if (length(list_subdir)==0 & length(list.files(trial_dirs[kk])) == 0) {
+    list_matrix <- rep("",length.out=3)
+    }
+  if (length(list_subdir) == 0 & length(list.files(trial_dirs[kk])) != 0) {
+    list_matrix <- onelevel_sub_directory_function(trial_dirs[kk],trial_dirs,kk)
+  }
+  if (length(list_subdir)!=0) {
+  list_matrix<-multilevel_sub_directory_function(trial_dirs[kk])
+  }
+  if (length(list.files(trial_dirs[kk]))==0) {
+    split = str_split(trial_dirs[kk], "/")[[1]]
+    list_matrix <- c(split[length(split)],"","")
+  }
+  list_total_matrix<-rbind(list_total_matrix,list_matrix)
+}
+
+
+rownames(list_total_matrix)<-NULL
+colnames(list_total_matrix)<-c("Directory","Sub-Directory (if applicable)","Files")
+which_empty_lines<-which(apply(list_total_matrix,1,function_empty))
+if (length(which_empty_lines)!=0) {list_total_matrix<-list_total_matrix[-which_empty_lines,]}
+
+@
+\begin{center}
+<<tidy=TRUE,echo=FALSE,results=tex>>=
+addtorow          <- list()
+addtorow$pos      <- list()
+addtorow$pos[[1]] <- c(0)
+addtorow$command  <- c(paste("\\hline \n",
+                             "\\endhead \n",
+                             "\\hline \n",
+                             "\\endfoot \n",sep=""))
+index_tab<-xtable(list_total_matrix)
+index_tab<-autoformat(index_tab)
+align(index_tab)<-"|l|l|U{10cm}|U{10cm}|"
+print(index_tab,
+      include.rownames=FALSE,include.colnames=TRUE,tabular.environment="longtable",
+      floating=FALSE,hline.after = c(-1,nrow(index_tab)),
+      add.to.row = addtorow,
+      sanitize.text.function=function(x) paste0("\\url{",x,"}"))
+
+@
+\end{center}
+
+
+\end{document}
