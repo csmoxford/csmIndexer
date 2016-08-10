@@ -7,4 +7,5 @@ Author: Peter Dutton, Eleni Frangou
 Maintainer: Peter Dutton <peter.dutton@ndorms.ox.ac.uk>
 Description: This package contains a small indexer which produces a pdf of the contents of a folder.
 License: None
+Depends: xtable
 RoxygenNote: 5.0.1

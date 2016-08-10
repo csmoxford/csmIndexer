@@ -105,7 +105,6 @@ for(i in 1:length(personnel)){
 \end{itemize}
 <<echo=FALSE,results=tex>>=
 library(xtable)
-library(stringr)
 ### CHANGE ###
 ### Put the TMF path below (by replacing the ...) in quotes for example "R:\\MISC\\ELAD" using two backslashes to separate the directories in the path
 TMF_path <- path
@@ -170,7 +169,7 @@ for (kk in 1:length(trial_dirs)) {
   list_matrix<-multilevel_sub_directory_function(trial_dirs[kk])
   }
   if (length(list.files(trial_dirs[kk]))==0) {
-    split = str_split(trial_dirs[kk], "/")[[1]]
+    split = strsplit(trial_dirs[kk], "/")[[1]]
     list_matrix <- c(split[length(split)],"","")
   }
   list_total_matrix<-rbind(list_total_matrix,list_matrix)
