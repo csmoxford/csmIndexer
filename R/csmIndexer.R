@@ -35,6 +35,9 @@ csmIndexer = function(){
 
   file = substring(file,1,nchar(file)-4)
   wd = getwd()
+
+  message("Running (pdf)latex on csmIndexer_v1.0.tex")
+
   tools::texi2pdf(paste0(wd,"/",file,".tex"))
 
   # cleanup:
@@ -42,5 +45,7 @@ csmIndexer = function(){
   file.remove(paste0(wd,"/",file,".log"))
   file.remove(paste0(wd,"/",file,"-concordance.tex"))
   file.remove(paste0(wd,"/",file,".tex"))
+
+  message("All done now.")
   return()
 }
