@@ -31,7 +31,7 @@
 \usepackage[obeyspaces]{url}% http://ctan.org/pkg/url
 \makeatletter
 \def\UrlBreaks{\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]%
- \do\(\do\)\do\,\do\?\do\-\do\'\do+\do\=\do\#}%
+ \do\(\do\)\do\,\do\?\do\-\do\'\do+\do\=\do\#\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z}%
 \def\UrlBigBreaks{\do\:\do@url@hyp}%
 \def\UrlNoBreaks{\do\[\do\{\do\<}%
 \makeatother
@@ -188,6 +188,22 @@ if (length(which_empty_lines)!=0) {list_total_matrix<-list_total_matrix[-which_e
 @
 \begin{center}
 <<tidy=TRUE,echo=FALSE,results=tex>>=
+
+
+urlFun = function(x,length = 80){
+  r = rep("",length(x))
+  for(j in 1:length(x)){
+    n = ceiling(nchar(x[j])/length)
+    for(i in 1:n){
+    r[j] = paste0(r[j], "\\url{",substr(x[j],(i-1)*length + 1,i*length),"}")
+    if(i < n){
+      r[j] = paste0(r[j]," \\\\ ")
+    }
+    }
+  }
+  return(r)
+}
+
 addtorow          <- list()
 addtorow$pos      <- list()
 addtorow$pos[[1]] <- c(0)
@@ -197,7 +213,7 @@ addtorow$command  <- c(paste("\\hline \n",
                              "\\endfoot \n",sep=""))
 index_tab<-xtable(list_total_matrix)
 index_tab<-autoformat(index_tab)
-align(index_tab)<-"|l|l|U{10cm}|U{10cm}|"
+align(index_tab)<-"|l|U{8cm}|U{8cm}|U{10cm}|"
 print(index_tab,
       include.rownames=FALSE,include.colnames=TRUE,tabular.environment="longtable",
       floating=FALSE,hline.after = c(-1,nrow(index_tab)),
