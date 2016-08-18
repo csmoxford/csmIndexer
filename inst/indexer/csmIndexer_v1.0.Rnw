@@ -1,19 +1,11 @@
 \documentclass[10pt,a4paper,landscape]{report}
 \usepackage[utf8]{inputenc}
-\usepackage{times}
 \usepackage[top=2cm, bottom=2cm, left=0.5cm, right=0.5cm]{geometry}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{times}
 \usepackage{float}
-\usepackage{changepage}
 \usepackage{graphics}
 \usepackage[pdftex]{graphicx}
 \usepackage{setspace}
-\usepackage[numbers]{natbib}
 \usepackage{longtable}
-\usepackage{tabu}
 \usepackage{lscape}
 \setlength{\headheight}{26pt}
 \doublespacing
@@ -26,9 +18,7 @@
 \usepackage{titlepic}
 \usepackage{array}
 \usepackage{tabularx}
-\usepackage{collcell}
-
-\usepackage[obeyspaces]{url}% http://ctan.org/pkg/url
+\usepackage[obeyspaces]{url}
 \makeatletter
 \def\UrlBreaks{\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]%
  \do\(\do\)\do\,\do\?\do\-\do\'\do+\do\=\do\#\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z}%
@@ -36,9 +26,7 @@
 \def\UrlNoBreaks{\do\[\do\{\do\<}%
 \makeatother
 \urlstyle{rm}
-
 \newcolumntype{U}[1]{>{\arraybackslash}p{#1}}
-
 \rhead{
 <<echo=FALSE,results=tex>>=
 if(length(pageLogo)> 0){
@@ -53,19 +41,13 @@ if(length(pageLogo)> 0){
 }
 
 
-%%% CHANGE %%%%
-%%% Trial Acronym - Replace ... in the following line %%%
+% Make title
 <<echo=FALSE,results=tex>>=
 cat("\\title{\\textbf{",title,"}}")
 @
 
 
 \titlepic{
-%%% CHANGE %%%
-%%% Add the path to the logos, can add more than 2 - just copy and paste the next line and change the path %%%
-%%% If you only need one logo then add a % at the beginning of the following line so that LaTeX omits the command %%%
-%\includegraphics[width=5cm]{  }
-%%% If you only need one logo (and you want it to be in the center of the page) add a % at the beginning of the following line %%%
 \hspace {2cm}
 \center
 <<echo=FALSE,results=tex>>=
@@ -79,8 +61,7 @@ if(length(titleLogo)> 0){
 }
 @
 }
-%%% CHANGE %%%
-%%% Replace the ... below with the author of the TMF Index %%%
+
 \author{
 <<echo=FALSE,results=tex>>=
 cat(author)
@@ -100,13 +81,13 @@ cat(paste0("Folders are stored at this location:", path ))
 
 \textbf{List key personnel involved in trial (with start and end dates if applicable):}
 \begin{itemize}
-
 <<echo=FALSE,results=tex>>=
 for(i in 1:length(personnel)){
   cat(paste0("\\item ", personnel[i], "\n"))
 }
 @
 \end{itemize}
+
 <<echo=FALSE,results=tex>>=
 library(xtable)
 ### CHANGE ###
@@ -179,7 +160,6 @@ for (kk in 1:length(trial_dirs)) {
   list_total_matrix<-rbind(list_total_matrix,list_matrix)
 }
 
-
 rownames(list_total_matrix)<-NULL
 colnames(list_total_matrix)<-c("Directory","Sub-Directory (if applicable)","Files")
 which_empty_lines<-which(apply(list_total_matrix,1,function_empty))
@@ -188,21 +168,6 @@ if (length(which_empty_lines)!=0) {list_total_matrix<-list_total_matrix[-which_e
 @
 \begin{center}
 <<tidy=TRUE,echo=FALSE,results=tex>>=
-
-
-urlFun = function(x,length = 80){
-  r = rep("",length(x))
-  for(j in 1:length(x)){
-    n = ceiling(nchar(x[j])/length)
-    for(i in 1:n){
-    r[j] = paste0(r[j], "\\url{",substr(x[j],(i-1)*length + 1,i*length),"}")
-    if(i < n){
-      r[j] = paste0(r[j]," \\\\ ")
-    }
-    }
-  }
-  return(r)
-}
 
 addtorow          <- list()
 addtorow$pos      <- list()
@@ -213,7 +178,10 @@ addtorow$command  <- c(paste("\\hline \n",
                              "\\endfoot \n",sep=""))
 index_tab<-xtable(list_total_matrix)
 index_tab<-autoformat(index_tab)
+
+suppressWarnings(
 align(index_tab)<-"|l|U{8cm}|U{8cm}|U{10cm}|"
+)
 print(index_tab,
       include.rownames=FALSE,include.colnames=TRUE,tabular.environment="longtable",
       floating=FALSE,hline.after = c(-1,nrow(index_tab)),
@@ -222,6 +190,4 @@ print(index_tab,
 
 @
 \end{center}
-
-
 \end{document}
