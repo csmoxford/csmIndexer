@@ -26,6 +26,7 @@
 \def\UrlNoBreaks{\do\[\do\{\do\<}%
 \makeatother
 \urlstyle{rm}
+\setlength{\headsep}{0.1in}
 \newcolumntype{U}[1]{>{\arraybackslash}p{#1}}
 \rhead{
 <<echo=FALSE,results=tex>>=
@@ -77,7 +78,7 @@ cat(author)
 
 
 <<echo=FALSE,results=tex>>=
-cat(paste0("\newline Folders are stored at this location:", path ))
+cat(paste0("\newline Folders are stored at this location:", path , " \\"))
 @
 
 \textbf{List key personnel involved in trial (with start and end dates if applicable):}
