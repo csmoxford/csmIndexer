@@ -75,8 +75,9 @@ cat(author)
 
 \maketitle
 
+
 <<echo=FALSE,results=tex>>=
-cat(paste0("Folders are stored at this location:", path ))
+cat(paste0("\newline Folders are stored at this location:", path ))
 @
 
 \textbf{List key personnel involved in trial (with start and end dates if applicable):}
