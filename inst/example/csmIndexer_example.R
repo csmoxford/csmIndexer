@@ -32,6 +32,7 @@ title <- "Index of useful Programs Folder"
 # The key personnel working on the documents contained in the folder.
 # You may wish to include start and end dates here if appropriate.
 personnel <- c("Peter Dutton (Statistician)", "Eleni Frangou (Statistician)")
+headerLogoWidth <- 1.5
 
 # Create the pdf
 csmIndexer()

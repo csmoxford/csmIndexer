@@ -18,6 +18,8 @@ csmIndexer()
 \item{title}{The document title}
 
 \item{personnel}{The key personnel working on the documents contained in the folder. You may wish to include start and end dates here if appropriate.}
+
+\item{headerLogoWidth}{The width to display the logo on the indexer page in cm. Default is 1.5}
 }
 \description{
 A small indexer which produces a pdf of the contents of a folder.
@@ -36,6 +38,7 @@ Note that the R programming language uses bachslash \ to create special characte
 #################################################################
 
 # install package containing the indexer.
+install.packages("devtools")
 devtools::install_github("csmoxford/csmIndexer")
 
 # Load the library containing the functions
@@ -73,4 +76,3 @@ Eleni Frangou
 
 Peter Dutton
 }
-

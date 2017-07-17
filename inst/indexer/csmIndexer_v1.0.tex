@@ -1,19 +1,11 @@
 \documentclass[10pt,a4paper,landscape]{report}
 \usepackage[utf8]{inputenc}
-\usepackage{times}
 \usepackage[top=2cm, bottom=2cm, left=0.5cm, right=0.5cm]{geometry}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{times}
 \usepackage{float}
-\usepackage{changepage}
 \usepackage{graphics}
 \usepackage[pdftex]{graphicx}
 \usepackage{setspace}
-\usepackage[numbers]{natbib}
 \usepackage{longtable}
-\usepackage{tabu}
 \usepackage{lscape}
 \setlength{\headheight}{26pt}
 \doublespacing
@@ -26,17 +18,75 @@
 \usepackage{titlepic}
 \usepackage{array}
 \usepackage{tabularx}
-\usepackage{collcell}
-
-\usepackage[obeyspaces]{url}% http://ctan.org/pkg/url
+\usepackage[obeyspaces]{url}
 \makeatletter
 \def\UrlBreaks{\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]%
- \do\(\do\)\do\,\do\?\do\-\do\'\do+\do\=\do\#}%
+ \do\(\do\)\do\,\do\?\do\-\do\'\do+\do\=\do\#\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z}%
 \def\UrlBigBreaks{\do\:\do@url@hyp}%
 \def\UrlNoBreaks{\do\[\do\{\do\<}%
 \makeatother
 \urlstyle{rm}
-
+\setlength{\headsep}{1in}
 \newcolumntype{U}[1]{>{\arraybackslash}p{#1}}
 
+
+
 \rhead{
+\includegraphics[width=2cm]{{"I:/Data/OCTRU_SOPs/CSMLogo"}.png}
+\hspace {0.5cm}}
+
+
+% Make title
+\title{\textbf{ Index of useful Programs Folder }}
+
+\titlepic{
+\hspace {2cm}
+\center
+\includegraphics[width=5cm]{{"I:/Data/OCTRU_SOPs/CSMLogo"}.png}
+\hspace {2cm}}
+
+\author{
+Eleni Franou}
+\date{\today}
+
+\usepackage{Sweave}
+\begin{document}
+\input{csmIndexer_v1.0-concordance}
+
+
+\maketitle
+
+\newpage
+\newline
+Hi Dumbo! Folders are stored at this location:I:/Data/Useful Programs/Statistical TMF Index \
+\textbf{List key personnel involved in trial (with start and end dates if applicable):}
+\begin{itemize}
+\item Peter Dutton (Statistician)
+\item Eleni Frangou (Statistician)\end{itemize}
+
+\begin{center}
+% latex table generated in R 3.4.0 by xtable 1.8-2 package
+% Mon Jul 17 08:16:57 2017
+\begin{longtable}{|U{8cm}|U{8cm}|U{10cm}|}
+  \hline
+\url{Directory} & \url{Sub-Directory (if applicable)} & \url{Files} \\ 
+  \hline 
+\endhead 
+\hline 
+\endfoot 
+\url{man} & \url{} & \url{} \\ 
+  \url{Old} & \url{} & \url{} \\ 
+  \url{} & \url{} & \url{A very long text title testing testing A very long text title testing testing testing testing testing testing.txt} \\ 
+  \url{} & \url{} & \url{SOPs_TMFInstructionsToUseIndex_v1.4_22jul2014.docx} \\ 
+  \url{} & \url{} & \url{SOPs_TMFInstructionsToUseIndex_v2.0_15jan2016.docx} \\ 
+  \url{} & \url{} & \url{SOPs_TMFInstructionsToUseIndex_v2.0_27jan2016.docx} \\ 
+  \url{} & \url{} & \url{Template_V1.0_12Aug2016.Rnw} \\ 
+  \url{} & \url{} & \url{TrialName_Index_Version_Date_v1.2_22jul2014.Rnw} \\ 
+  \url{} & \url{} & \url{TrialName_Index_Version_Date_v2.0_15jan2016.Rnw} \\ 
+  \url{} & \url{} & \url{TrialName_Index_Version_Date_v3.0_09aug2016.Rnw} \\ 
+  \url{} & \url{} & \url{TrialName_Index_Version_Date_v4.0_17aug2016.Rnw} \\ 
+  \url{} & \url{} & \url{uifhughjjgirhghrke_ugherhjgijreigjriegjriejglirjleig_jlirjgirjeogrelgjlir_jgorjgoreglorjl.txt} \\ 
+   \hline
+\hline
+\end{longtable}\end{center}
+\end{document}

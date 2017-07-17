@@ -8,4 +8,4 @@ Maintainer: Peter Dutton <peter.dutton@ndorms.ox.ac.uk>
 Description: This package contains a small indexer which produces a pdf of the contents of a folder.
 License: GPL-2
 Depends: xtable
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

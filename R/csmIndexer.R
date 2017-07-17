@@ -10,6 +10,7 @@
 #' @param author The author of the document
 #' @param title The document title
 #' @param personnel The key personnel working on the documents contained in the folder. You may wish to include start and end dates here if appropriate.
+#' @param headerLogoWidth The width to display the logo on the indexer page in cm. Default is 1.5
 #'
 #' @details
 #' Prerequesites: You must have installed miktex and it must be available on the PATH.
